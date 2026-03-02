@@ -7,12 +7,13 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch("https://randomuser.me/api/?results=5");
+    try {const response = await fetch("https://randomuser.me/api/?results=5");
     const data = await response.json();
 
     console.log(data);
 
-    setUsers(data.results);
+    setUsers(data.results);} catch (error) {
+      console.error("Error fetching data:", error);
   };
   useEffect(() => {
     fetchData();
